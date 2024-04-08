@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FollowerController extends Controller
 {
-    function addFollowe(Request $request)
+    function addFollower(Request $request)
     {
         $check = Follower::where("user_id", $request->id)->where("follower_id", $request->follower_id)->first();
         if (!$check) {

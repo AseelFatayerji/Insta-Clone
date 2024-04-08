@@ -15,16 +15,16 @@ class PostInteractionController extends Controller
             $post->user_id = $request->id;
             $post->post_id = $request->post_id;
             $post->Liked = $request->like;
-            $post->Comments = $request->Comments;
+            $post->Comments = $request->comments;
 
             $post->save();
 
             return response()->json(["message" => "created post interaction", 'info' => $post]);
         } else {
+            $item =$request->interaction;
             $check->user_id = $request->id;
             $check->post_id = $request->post_id;
-            $check->Liked = $request->like;
-            $check->Comments = $request->Comments;
+            $check->$item = $request->value;
 
             $check->save();
 

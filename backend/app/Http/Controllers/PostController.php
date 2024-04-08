@@ -13,12 +13,12 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->user_id = $request->user;
         $post->Description = $request->content;
-
+        $post->save();
         return response()->json(["message"=>"post was created",'info' => $post]);        
     }
     function deletePost(Request $request)
     {
-        $post = Post::find($request->id);
+        $post = Post::where("id", $request->id)->first();
         $post->delete();
         return response()->json(["message"=>"post was deleted"]);        
     }
