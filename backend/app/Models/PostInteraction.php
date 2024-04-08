@@ -10,4 +10,8 @@ class PostInteraction extends Model
     {
         return $this->belongsTo(Post::class);
     }
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

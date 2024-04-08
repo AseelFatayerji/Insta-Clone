@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignIdFor(App\Models\User::class)->constrained();
             $table->string('Title');
             $table->string('Description');
-            $table->file('Image');
+           // $table->file('Image');
             $table->timestamps();
         });
     }

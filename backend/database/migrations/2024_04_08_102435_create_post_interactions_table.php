@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('post_interactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(App\Models\User::class)->constrained();
             $table->foreignIdFor(App\Models\Post::class)->constrained();
             $table->boolean("Liked");
             $table->string("Comments");
