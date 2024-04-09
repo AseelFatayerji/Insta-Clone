@@ -1,18 +1,20 @@
 import axios from "axios";
 import Navbar from "../components/navbar";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login(){
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [email,SetEmail] = useState("")
     const [password,SetPassword] = useState("")
     const verify = () =>{
-        axios.get("//localhost:8000/api/login",{email,password}).then((resp)=>{
+        console.log(password +" "+email)
+        axios.post("//localhost:8000/api/auth/login",{email,password}).then((resp)=>{
             localStorage.setItem("login",true);
-            //localStorage.setItem("username",resp.info.username);
-            console.log(resp)
-            //navigate("/profile/");
+            localStorage.setItem("username",resp.data.user.username);
+            localStorage.setItem("token",resp.data.authorisation.token);
+
+            navigate("/profile/"+resp.data.user.username);
         }).catch((err)=>{
             console.log(err)
         })
@@ -22,8 +24,8 @@ function Login(){
             <div><Navbar/></div>
             <div><div>
                 <div>Login</div>
-                <div><input type="email" placeholder="example@gmail.com" onChange={(e)=>{SetEmail(email.concat(e.target.value))}}/></div>
-                <div><input type="password" placeholder="password" onChange={(e)=>{SetPassword(password.concat(e.target.value))}}/></div>
+                <div><input type="email" placeholder="example@gmail.com" onChange={(e)=>{SetEmail((e.target.value))}}/></div>
+                <div><input type="password" placeholder="password" onChange={(e)=>{SetPassword((e.target.value))}}/></div>
                 <div><button onClick={verify}>Login</button></div>
                 <div><Link to="/signup">No account? <b>Signup</b></Link></div>
                 </div></div>

@@ -6,6 +6,17 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\PostInteractionController;
+use App\Http\Controllers\AuthController;
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('signup', [AuthController::class, 'register']);
+});
 
 Route::get('/getInfo',[UserController::class,'getInfo'] ) ;
 Route::get('/editinfo',[UserController::class,'editinfo'] ) ;

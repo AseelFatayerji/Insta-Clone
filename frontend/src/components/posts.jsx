@@ -1,4 +1,4 @@
-import { Link } from "react-browser-router";
+import { Link } from "react-router-dom";
 
 function Post({title,content,username}){
     return(
