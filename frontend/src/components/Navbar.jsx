@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 function Navbar() {
   const [islogin, SetLogin] = useState(false);
   const [username, SetName] = useState("");
-  useEffect(() => {
-    SetLogin(localStorage.getItem("login"));
-    SetName(localStorage.getItem("name"));
+ 
+  useEffect(() => {   
+    const login = localStorage.getItem("login");
+    if (login === null) {
+      SetLogin(login);
+      SetName(localStorage.getItem("name"));
+    }
   }, []);
   return (
     <nav>
