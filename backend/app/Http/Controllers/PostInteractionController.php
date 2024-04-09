@@ -7,6 +7,11 @@ use App\Models\PostInteraction;
 
 class PostInteractionController extends Controller
 {
+    function getInteracions(Request $request){
+        $interaction = PostInteraction::select("*")->join("posts","post_id","=","posts.id")->get();
+        return response()->json(["message" => "post interaction", 'info' => $interaction]);
+
+    }
     function addInteraction(Request $request)
     {
         $check = PostInteraction::where("user_id", $request->id)->where("post_id", $request->post_id)->first();

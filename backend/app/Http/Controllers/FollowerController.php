@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class FollowerController extends Controller
 {
+    function getFollower(Request $request){
+        $follower = Follower::where("user_id", $request->id)->get();
+        return response()->json(["message" => "follower list", 'info' => $follower]);
+
+    }
+    function getFollowing(Request $request){
+        $follower = Follower::where("follower_id", $request->id)->get();
+        return response()->json(["message" => "following list", 'info' => $follower]);
+
+    }
     function addFollower(Request $request)
     {
         $check = Follower::where("user_id", $request->id)->where("follower_id", $request->follower_id)->first();
