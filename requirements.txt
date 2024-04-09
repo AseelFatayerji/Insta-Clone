@@ -1,0 +1,7 @@
+Users can login/signup (JWT is required).
+Users can edit there profiles. backend done
+Users can follow each others. backend done
+
+Users can create posts with captions.backend done
+Users can browse, like and comment to posts in the feed page according to followings. backend done
+Users can get recommendations of users to follow, according to a depth of 2 follower nodes of users I follow.
