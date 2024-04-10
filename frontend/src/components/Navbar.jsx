@@ -7,15 +7,15 @@ function Navbar() {
  
   useEffect(() => {   
     const login = localStorage.getItem("login");
-    if (login === null) {
+    if (login !== null) {
       SetLogin(login);
-      SetName(localStorage.getItem("name"));
+      SetName(localStorage.getItem("username"));
     }
   }, []);
   return (
     <nav>
       <div>
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
       </div>
       {islogin ? (
         <div>

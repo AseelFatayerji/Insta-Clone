@@ -11,10 +11,11 @@ function Login(){
         console.log(password +" "+email)
         axios.post("//localhost:8000/api/auth/login",{email,password}).then((resp)=>{
             localStorage.setItem("login",true);
-            localStorage.setItem("username",resp.data.user.username);
+            localStorage.setItem("username",resp.data.user.name);
+            localStorage.setItem("email",resp.data.user.email);
             localStorage.setItem("token",resp.data.authorisation.token);
 
-            navigate("/profile/"+resp.data.user.username);
+            navigate("/profile/"+resp.data.user.name);
         }).catch((err)=>{
             console.log(err)
         })
