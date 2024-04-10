@@ -55,8 +55,8 @@ function Profile() {
     });
   };
   const createPosts = () =>{
-    axios.post("//localhost:8000/api/createPost", {title,user,content} ).then((resp) => {
-      console.log(resp.data.info);
+    axios.post("//localhost:8000/api/createPost", {title,user,content} ).then((_) => {
+      getPost();
     }).catch((err)=>{
       console.log(err);
     });
