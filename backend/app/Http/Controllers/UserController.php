@@ -12,7 +12,12 @@ class UserController extends Controller
     function getInfo(Request $request)
     {
         $email = $request->email;
-        $user = User::select("*")->where("email", $email)->first();
+        $profile = User::select("*")->where("email", $email)->first();
+        if ($profile) {
+            return response()->json(['info' => $profile]);
+        }
+        $name = $request->name;
+        $user = User::select("*")->where("name", $name)->first();
         if ($user) {
             return response()->json(['info' => $user]);
         }
@@ -25,16 +30,16 @@ class UserController extends Controller
         $value = $request->value;
 
         $user = User::select("*")->where("email", $email)->first();
-        if($item == "password"){
-            $user->$item =   Hash::make($value);
+        if ($item == "password") {
+            $user->$item = Hash::make($value);
             $user->save();
 
-        return response()->json(["message"=>"updated user",'info' => $user]);  
+            return response()->json(["message" => "updated user", 'info' => $user]);
         }
         $user->$item = $value;
         $user->save();
 
-        return response()->json(["message"=>"updated user",'info' => $user]);        
+        return response()->json(["message" => "updated user", 'info' => $user]);
     }
     function deleteUser($email)
     {
@@ -42,6 +47,6 @@ class UserController extends Controller
         $user->delete();
         $user->save();
 
-        return response()->json(["message"=>"user was deleted"]);        
+        return response()->json(["message" => "user was deleted"]);
     }
 }

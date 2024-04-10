@@ -5,7 +5,7 @@ function Post({title,content,username}){
         <div>
             <div>{title}</div>
             <div>{content}</div>
-            <div><Link to={"/profile/"+username}>{username}</Link></div>
+            <div><Link to={"/"+username} state={{ name: username }}>{username}</Link></div>
         </div>
     );
 }
