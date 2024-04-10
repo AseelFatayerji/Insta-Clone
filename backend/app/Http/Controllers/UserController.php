@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 
@@ -24,6 +25,12 @@ class UserController extends Controller
         $value = $request->value;
 
         $user = User::select("*")->where("email", $email)->first();
+        if($item == "password"){
+            $user->$item =   Hash::make($value);
+            $user->save();
+
+        return response()->json(["message"=>"updated user",'info' => $user]);  
+        }
         $user->$item = $value;
         $user->save();
 

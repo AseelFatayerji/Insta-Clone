@@ -8,7 +8,7 @@ function Login(){
     const [email,SetEmail] = useState("")
     const [password,SetPassword] = useState("")
     const verify = () =>{
-        console.log(password +" "+email)
+        
         axios.post("//localhost:8000/api/auth/login",{email,password}).then((resp)=>{
             localStorage.setItem("login",true);
             localStorage.setItem("username",resp.data.user.name);

@@ -16,7 +16,7 @@ class PostController extends Controller
     }
     function displayUserPost(Request $request)
     {
-        $id = $request->user_id;
+        $id = $request->user;
         $post = Post::select("*")->join("users", 'users.id','=','posts.user_id')->where("user_id",$id)->get();
 
         return response()->json(['message' => 'user post display','post'=>$post]);
